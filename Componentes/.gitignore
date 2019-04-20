@@ -1,0 +1,9 @@
+*/**/*.* 
+# ignore all extensions in the next folder
+*/** 
+# including all directories
+!/**/*.vhd 
+#except the kinds of files below
+!/**/*.vwf
+
+

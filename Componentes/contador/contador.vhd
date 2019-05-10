@@ -28,13 +28,12 @@ component registrador
 	clk: in std_logic);
 end component;
 
-signal internal_signal, outro_sinal: std_logic_vector(3 downto 0);
-signal extra : std_logic;
+signal internal_signal, signal_out : std_logic_vector(3 downto 0);
+signal out_bit: std_logic;
 
 begin
-	internal_signal<="0000";
-	inc:incrementador port map(outro_sinal, internal_signal, extra);
-	reg:registrador port map(internal_signal, outro_sinal, cnt, clk);
-	tc<=(outro_sinal(0)and outro_sinal(1) and outro_sinal(2) and outro_sinal(3));
-	c<=outro_sinal;
+	reg:registrador port map(internal_signal, signal_out, cnt, clk);
+	inc:incrementador port map(signal_out, internal_signal, out_bit);
+	tc<=(signal_out(0)and signal_out(1) and signal_out(2) and signal_out(3));
+	c<=signal_out;
 end funcionamento;

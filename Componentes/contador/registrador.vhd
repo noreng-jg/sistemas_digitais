@@ -20,4 +20,4 @@ architecture funcionamento of registrador is
 		end process;
 end funcionamento;
 
---vou adicionar essa comentario porque eu posso 
+

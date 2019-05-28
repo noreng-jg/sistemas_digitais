@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity subtrator is
-	generic(n:integer:=8);
+	generic(n:integer:=4);
 	port(a:in std_logic_vector(N-1 downto 0);
 	cin: in std_logic;
 	b:in std_logic_vector(N-1 downto 0);
@@ -14,6 +14,7 @@ architecture funcionamento of subtrator is
 	
 	
 	component somador_nbits
+			generic (n: integer:=4);
 			port(a:in std_logic_vector(N-1 downto 0);
 				cin: in std_logic;
 				b:in std_logic_vector(N-1 downto 0);

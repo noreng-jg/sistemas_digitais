@@ -2,13 +2,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 
-entity fsm_controle is
+entity teste_m_controle is
 	port (clk, fim,start: in std_logic;
 	loada,loadb, selb, loadacc,pronto: out std_logic);
-end fsm_controle;
+end teste_m_controle;
 
 
-architecture controle of fsm_controle is
+architecture controle of teste_m_controle is
 	type state is (espera,comeca, compara, opera, finaliza);
 	signal current_state,next_state: state;
 begin

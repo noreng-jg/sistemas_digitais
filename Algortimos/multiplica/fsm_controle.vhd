@@ -9,7 +9,7 @@ end fsm_controle;
 
 
 architecture controle of fsm_controle is
-	type state is (espera,comeca, compara, opera, finaliza);
+	type state is (espera,comeca, compara, finaliza);
 	signal current_state,next_state: state;
 begin
 	
@@ -28,32 +28,34 @@ begin
 					loada<='1';
 					loadb<='1';
 					selb<='0';
-					loadacc<='0';
-					pronto<='0';
+					loadacc<='1';
 					next_state<=compara;
 				when compara =>
 					selb<='1';
-					loadacc<='1';					
+					loada<='0';
+					loadb<='0';
 					if fim='1' then
+						pronto<='1';
 						next_state<=finaliza;
 					else
-						next_state<=opera;
+						next_state<=compara;
 					end if;
 				when finaliza=>
+					loadacc<='0';
 					pronto<='1';
-					next_state<=espera;
+					selb<='0';
+					next_state<=finaliza;
 				when espera=>
 						loada<='0';
 						loadb<='0';
+						loadacc<='0';
+						pronto<='0';
+						selb<='0';
 						if start='1' then
 							next_state<=comeca;
 						else 
 							next_state<=espera;
 						end if;
-				when opera=>
-					loadacc<='1';
-					selb<='1';
-					next_state<=compara;
 				end case;
 		end process;
 		

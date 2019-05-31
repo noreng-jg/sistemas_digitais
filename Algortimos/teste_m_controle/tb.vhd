@@ -1,12 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity teste_m_controle is
-end teste_m_controle;
+entity teste is
+end teste;
 
-architecture full_testbench of teste_m_controle is
+architecture full_testbench of teste is
 	--declare component---
-	component teste_m_controle is
+	component fsm_controle is
 		port (clk, fim, start: in std_logic;
 		loada,loadb, selb, loadacc,pronto: out std_logic);
 	end component;
@@ -26,7 +26,7 @@ architecture full_testbench of teste_m_controle is
 
 
 --instantiate---
-	dut: teste_m_controle port map(clk=>t_clk, fim=>t_fim, start=>t_start, 
+	dut: fsm_controle port map(clk=>t_clk, fim=>t_fim, start=>t_start, 
 loada=>t_loada, loadb=>t_loadb, selb=>t_selb, loadacc=>t_loadacc, pronto=>t_pronto);
 
 --end instantiation--
@@ -48,7 +48,7 @@ process
 	begin 
 		wait for 30 ns;
 			t_start<='1';
-		        wait for 30 ns;
+		        wait for 60 ns;
 			t_start<='0';
 		wait;
 	end process;
@@ -58,10 +58,10 @@ process
 
 --inicio do fim --
 process
-	begin 
-		wait for 210 ns;
+	begin
+		wait for 810 ns;
 			t_fim<='1';
-		wait for 30 ns;
+		wait for 60 ns;
 			t_fim<='0';
 		wait;
 	end process;

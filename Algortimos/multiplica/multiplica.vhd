@@ -8,7 +8,8 @@ entity multiplica is
 	b: in std_logic_vector(n-1 downto 0);
 	iniciar: in std_logic;
 	clk: in std_logic;
-	s: out std_logic_vector(n+n-1 downto 0)
+	s: out std_logic_vector(n+n-1 downto 0);
+	termina:out std_logic
 	);
 end multiplica;
 
@@ -41,5 +42,7 @@ s_selb,s_loadacc, s_pronto);
 
 po: datapath port map(a,b,s_loada, s_loadb,s_selb, s_loadacc,clk, 
 s_fim,s);
+
+termina<=s_fim;
 
 end func;

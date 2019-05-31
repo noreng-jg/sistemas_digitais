@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity somador_nbits is
+entity somador_8bits is
 	generic (n: integer:=8);
 	port(a:in std_logic_vector(n-1 downto 0);
 	cin: in std_logic;
@@ -11,7 +11,7 @@ entity somador_nbits is
 	);
 end entity;
 
-architecture funcionamento of somador_nbits is
+architecture funcionamento of somador_8bits is
 	
 
 	component full_adder 

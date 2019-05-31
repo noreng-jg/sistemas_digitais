@@ -1,12 +1,12 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off multiplica -c multiplica --vector_source="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/Waveform.vwf" --testbench_file="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/Waveform.vwf.vht"</ftestbench_cmd>
-<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off multiplica -c multiplica --vector_source="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/Waveform.vwf" --testbench_file="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/Waveform.vwf.vht"</ttestbench_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off multiplica -c multiplica --vector_source="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/Waveform4.vwf" --testbench_file="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/Waveform4.vwf.vht"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off multiplica -c multiplica --vector_source="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/Waveform4.vwf" --testbench_file="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/Waveform4.vwf.vht"</ttestbench_cmd>
 <fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/" multiplica -c multiplica</fnetlist_cmd>
 <tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/Vagner/Documents/Quartus -New/sistemas_digitais/Algortimos/multiplica/simulation/qsim/" multiplica -c multiplica</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vcom -work work multiplica.vho
-vcom -work work Waveform.vwf.vht
+vcom -work work Waveform4.vwf.vht
 vsim -novopt -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.multiplica_vhd_vec_tst
 vcd file -direction multiplica.msim.vcd
 vcd add -internal multiplica_vhd_vec_tst/*
@@ -20,13 +20,11 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
-
-
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
 vcom -work work multiplica.vho
-vcom -work work Waveform.vwf.vht
+vcom -work work Waveform4.vwf.vht
 vsim -novopt -c -t 1ps -sdfmax multiplica_vhd_vec_tst/i1=multiplica_vhd.sdo -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.multiplica_vhd_vec_tst
 vcd file -direction multiplica.msim.vcd
 vcd add -internal multiplica_vhd_vec_tst/*
@@ -40,8 +38,6 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
-
-
 </modelsim_script_timing>
 <hdl_lang>vhdl</hdl_lang>
 </simulation_settings>*/
@@ -304,7 +300,8 @@ TRANSITION_LIST("a[3]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 90.0;
+		LEVEL 0 FOR 910.0;
 	}
 }
 
@@ -313,7 +310,8 @@ TRANSITION_LIST("a[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 90.0;
+		LEVEL 0 FOR 910.0;
 	}
 }
 
@@ -331,7 +329,7 @@ TRANSITION_LIST("a[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 1000.0;
 	}
 }
 
@@ -349,7 +347,8 @@ TRANSITION_LIST("b[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 90.0;
+		LEVEL 0 FOR 910.0;
 	}
 }
 
@@ -358,7 +357,7 @@ TRANSITION_LIST("b[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 1000.0;
 	}
 }
 
@@ -367,7 +366,7 @@ TRANSITION_LIST("b[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 1000.0;
 	}
 }
 
@@ -391,8 +390,9 @@ TRANSITION_LIST("iniciar")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 940.0;
+		LEVEL 0 FOR 30.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 890.0;
 	}
 }
 

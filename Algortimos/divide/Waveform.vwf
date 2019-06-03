@@ -22,6 +22,11 @@ run -all
 quit -f
 
 
+
+
+
+
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -40,6 +45,11 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
+
+
+
+
 
 
 </modelsim_script_timing>
@@ -469,6 +479,26 @@ SIGNAL("debugr[0]")
 	PARENT = "debugr";
 }
 
+SIGNAL("less")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("menor")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
 TRANSITION_LIST("a[3]")
 {
 	NODE
@@ -756,6 +786,24 @@ TRANSITION_LIST("debugr[1]")
 }
 
 TRANSITION_LIST("debugr[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("less")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("menor")
 {
 	NODE
 	{
@@ -1148,6 +1196,24 @@ DISPLAY_LINE
 	TREE_INDEX = 38;
 	TREE_LEVEL = 1;
 	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "less";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 39;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "menor";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 40;
+	TREE_LEVEL = 0;
 }
 
 TIME_BAR

@@ -72,22 +72,6 @@ process
 		wait;
 	end process;
 --finaliza sinal do fim
-process
-	begin
-		wait for 170 ns;
-			t_less<='1';
-		wait for 60 ns;
-			t_less<='0';
-		wait;
-	end process;
-process
-	begin
-		wait for 510 ns;
-			t_rst<='1';
-		wait for 60 ns;
-			t_rst<='0';
-		wait;
-	end process;
 
 
 

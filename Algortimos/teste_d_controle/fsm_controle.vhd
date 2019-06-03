@@ -27,17 +27,19 @@ begin
 				when comeca=>
 					loada<='1';
 					loadb<='0';
-					selb<='1';
+					loadq<='1';
+					selb<='0';
 					selb2<='1';
 					loadr<='1';
-					loadq<='1';
 					pronto<='0';
+					menor<='0';
 					next_state<=carrega;
 				when compara =>
 					selb<='0';
 					loada<='0';
 					loadb<='0';
 					pronto<='0';
+					menor<='0';
 					if fim='1' then
 						next_state<=finaliza;
 					else
@@ -45,6 +47,8 @@ begin
 					end if;
 				when carrega=>
 					loadb<='1';
+					loada<='0';
+					selb<='1';
 					if less='0' then
 					next_state<=compara;
 					else
@@ -55,12 +59,10 @@ begin
 					loadq<='0';
 					pronto<='1';
 					loadr<='0';
+					menor<='0';
 					if reset='1' then
-						next_state<=espera;
-					else
-						next_state<=finaliza;
-					end if;	
-					
+					next_state<=espera;
+					end if;
 				when espera=>
 						loada<='0';
 						loadb<='0';

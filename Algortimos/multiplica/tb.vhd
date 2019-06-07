@@ -11,7 +11,7 @@ component multiplica is
 	generic(n:integer:=4);
 	port(a:in std_logic_vector(n-1 downto 0);--
 	b: in std_logic_vector(n-1 downto 0);--
-	iniciar: in std_logic;
+	iniciar, reset: in std_logic;
 	clk: in std_logic;--
 	s: out std_logic_vector(n+n-1 downto 0);--
 	termina:out std_logic
@@ -25,13 +25,13 @@ end component;
 	signal signal_a: std_logic_vector(3 downto 0);
 	signal signal_b:std_logic_vector(3 downto 0);
 	signal signal_s:std_logic_vector(7 downto 0);
-
+	signal t_reset:std_logic:='0';
 begin
 
 
 --instantiate---
 	dut: multiplica port map(a=>signal_a, b=>signal_b, iniciar=>t_start, 
-clk=>t_clk, s=>signal_s, termina=>t_termina);
+reset=>t_reset,clk=>t_clk, s=>signal_s, termina=>t_termina);
 
 --end instantiation--
 
@@ -68,7 +68,7 @@ end process;
 
 process
 	begin 
-		        wait for 60 ns;
+		        wait for 100 ns;
 			t_start<='0';
 		wait;
 	end process;

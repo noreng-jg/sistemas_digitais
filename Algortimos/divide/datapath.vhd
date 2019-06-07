@@ -7,7 +7,7 @@ entity datapath is
 	b:in std_logic_vector(n-1 downto 0);
 	reset,load_a,load_b,load_q,load_r,sel_b,sel_b2,menor,clk, pronto:in std_logic;
 	fim, less: out std_logic;
-	r,q,debuga,debugb,debugr:out std_logic_vector(n-1 downto 0)
+	r,q:out std_logic_vector(n-1 downto 0)
 );
 end datapath;
 
@@ -50,6 +50,7 @@ end component;
 component contador 
 	port(cnt:in std_logic;
 	clk:  in std_logic;
+	reset:  in std_logic;
 	c:out std_logic_vector(3 downto 0);
 	tc: out std_logic
 	);
@@ -88,13 +89,13 @@ signal ouch,hut,hut2 : std_logic;
 signal sinaldemenor:std_logic;
 
 begin
-	rega:reg4 port map(a,ao,load_a, clk);
-	regb:reg4 port map(b,bo,load_b,clk);
-	regr:reg4 port map(rqi,ro,load_r,clk);
+	rega:reg_reset port map(a,ao,clk,reset,load_a);
+	regb:reg_reset port map(b,bo,clk,reset,load_b);
+	regr:reg_reset port map(rqi,ro,clk,reset,load_r);
 	mux: mux2x1_4 port map(ao,rs,sel_b,rqi);
 	mux2: mux2x1_4 port map(bo,"0000",sel_b2,bi);	
 	
-	cont:contador port map(load_q, clk, qo, hut);
+	cont:contador port map(load_q, clk,reset, qo, hut);
 	--
 	subqo: subtrator port map(qo, '0', "0010", qi);		
 	mq: mux2x1_4 port map("0000",qi,lt2,smq);
@@ -109,8 +110,6 @@ begin
 	r<=rf;
 	q<=qf;
 	less<=lt2;
-	debuga<=ao;
-	debugb<=bo;
-	debugr<=rs;
+	
 	
 end func;

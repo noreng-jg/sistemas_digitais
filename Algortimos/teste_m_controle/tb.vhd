@@ -7,7 +7,7 @@ end teste;
 architecture full_testbench of teste is
 	--declare component---
 	component fsm_controle is
-		port (clk, fim, start: in std_logic;
+		port (clk, fim, start, reset: in std_logic;
 		loada,loadb, selb, loadacc,pronto: out std_logic);
 	end component;
 
@@ -20,13 +20,14 @@ architecture full_testbench of teste is
 	signal t_selb:std_logic;
 	signal t_loadacc:std_logic;
 	signal t_pronto:std_logic;
+	signal t_reset:std_logic:='0';
 	
 
 	begin
 
 
 --instantiate---
-	dut: fsm_controle port map(clk=>t_clk, fim=>t_fim, start=>t_start, 
+	dut: fsm_controle port map(clk=>t_clk, fim=>t_fim, start=>t_start, reset=>t_reset,
 loada=>t_loada, loadb=>t_loadb, selb=>t_selb, loadacc=>t_loadacc, pronto=>t_pronto);
 
 --end instantiation--
@@ -35,7 +36,7 @@ loada=>t_loada, loadb=>t_loadb, selb=>t_selb, loadacc=>t_loadacc, pronto=>t_pron
 
 process
 	begin 
-		wait for 30ns;
+		wait for 10ns;
 		t_clk<=not(t_clk);
 end process;
 
@@ -46,10 +47,14 @@ end process;
 
 process
 	begin 
-		wait for 30 ns;
+		wait for 20 ns;
 			t_start<='1';
-		        wait for 60 ns;
+		        wait for 10 ns;
 			t_start<='0';
+			wait for 210ns;
+			t_start<='1';
+			wait for 10 ns;
+			t_start<='0';	
 		wait;
 	end process;
 --fim do pulso---
@@ -59,13 +64,25 @@ process
 --inicio do fim --
 process
 	begin
-		wait for 810 ns;
+		wait for 90 ns;
 			t_fim<='1';
-		wait for 60 ns;
+		wait for 20 ns;
 			t_fim<='0';
 		wait;
 	end process;
 --finaliza sinal do fim
+
+--inicio de reset---
+process
+	begin 
+		wait for 160 ns;
+			t_reset<='1';
+		        wait for 10 ns;
+			t_reset<='0';
+		wait;
+	end process;
+--fim do pulso---
+
 
 
 end full_testbench;

@@ -3,13 +3,13 @@ use ieee.std_logic_1164.all;
 
 
 entity fsm_controle is
-	port (clk, fim,start: in std_logic;
+	port (clk, fim,start, reset: in std_logic;
 	loada,loadb, selb, loadacc,pronto: out std_logic);
 end fsm_controle;
 
 
 architecture controle of fsm_controle is
-	type state is (espera,comeca, compara, finaliza);
+	type state is (espera,comeca, extra,compara, finaliza);
 	signal current_state,next_state: state;
 begin
 	
@@ -21,7 +21,7 @@ begin
 		end process;
 		
 	
-	process(current_state, fim, start)
+	process(current_state, fim, start, reset)
 		begin
 			case current_state is
 				when comeca=>
@@ -35,16 +35,22 @@ begin
 					loada<='0';
 					loadb<='0';
 					if fim='1' then
-						pronto<='1';
 						next_state<=finaliza;
 					else
 						next_state<=compara;
 					end if;
 				when finaliza=>
-					loadacc<='0';
 					pronto<='1';
+					loadacc<='0';
+					next_state<=extra;
+				when extra=>
 					selb<='0';
-					next_state<=finaliza;
+					pronto<='0';
+					if reset='0' then
+						next_state<=extra;
+					else 
+						next_state<=espera;
+					end if;
 				when espera=>
 						loada<='0';
 						loadb<='0';

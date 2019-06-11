@@ -6,8 +6,8 @@ entity divide is
 	generic(n: integer := 4);
 	port(a,b: in std_logic_vector(n-1 downto 0);
 	start, clk,rst: in std_logic;
-	final,less, menor: out std_logic;
-	r, q, debuga, debugb, debugr: out std_logic_vector(n-1 downto 0)
+	final: out std_logic;
+	r, q: out std_logic_vector(n-1 downto 0)
 	);
 end divide;
 
@@ -29,7 +29,7 @@ component datapath
 	b:in std_logic_vector(n-1 downto 0);
 	reset,load_a,load_b,load_q,load_r,sel_b,sel_b2,menor,clk, pronto:in std_logic;
 	fim, less: out std_logic;
-r,q,debuga,debugb,debugr:out std_logic_vector(n-1 downto 0)
+r,q:out std_logic_vector(n-1 downto 0)
 );
 end component;
 
@@ -38,9 +38,9 @@ begin
 pc: fsm_controle port map(clk, s_fim, start,s_less, rst, s_loada, s_loadb,s_menor, s_loadr,
 s_loadq, s_selb,s_selb2, s_pronto);
 po: datapath port map(a,b,rst, s_loada, s_loadb, s_loadq,s_loadr, 
-s_selb, s_selb2,s_menor,clk, s_pronto, s_fim,s_less,r,q,debuga,debugb,debugr);
-less<=s_less;
+s_selb, s_selb2,s_menor,clk, s_pronto, s_fim,s_less,r,q);
+
 final<=s_pronto;
-menor<=s_menor;
+
 
 end main;

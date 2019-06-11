@@ -51,9 +51,9 @@ signal concatena_entrada: std_logic_vector(n+n-1 downto 0);
 
 begin
 
---concatena_entrada<=(n+n-1 downto n=>'0')& v_in;
+concatena_entrada<=(n+n-1 downto n=>'0')& v_in;
 
-mux: mux2x1 port map((n+n-1 downto n=>'0')& v_in, entrada_rotativa, loada, entra_reg);
+mux: mux2x1 port map(concatena_entrada, entrada_rotativa, loada, entra_reg);
 
 esq: d_esq port map(desloc_esq, entrada_rotativa,shl);
 

@@ -106,7 +106,7 @@ begin
 	rb: reg4 port map (b, bo, clk, '0', loadb);
 	ai: acessa_index port map (bo, clk, conta, reseta_contador, igualou, bi);
 	dd: Deslocador_duplo port map(a, loada,'0', ao, clk, shlen);
-	racc: reg_reset port map(soma, acco, clk, '0', loadacc);
+	racc: reg_reset port map(soma, acco, clk, resetaacc, loadacc);
 	add: somador_nbits port map(ao, '0', acco, soma, sobra);
 	rresp: reg_reset port map(soma, resposta, clk, '0', loadresp);
 	

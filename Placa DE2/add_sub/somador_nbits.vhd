@@ -6,13 +6,12 @@ entity somador_nbits is
 	port(a:in std_logic_vector(n-1 downto 0);
 	cin: in std_logic;
 	b:in std_logic_vector(n-1 downto 0);
-	s:out std_logic_vector(n-1 downto 0)
+	s:out std_logic_vector(n downto 0)
 	);
 end entity;
 
 architecture funcionamento of somador_nbits is
 	
-signal soma_all: std_logic_vector(n downto 0);
 
 	component full_adder 
 		port(a,b, ci: in std_logic;
@@ -23,15 +22,13 @@ signal soma_all: std_logic_vector(n downto 0);
 	
 begin 
 	
-	estagio0: full_adder port map(a(0), b(0), cin, c(1),soma_all(0));
+	estagio0: full_adder port map(a(0), b(0), cin, c(1),s(0));
 	
 	gates:for i in 1 to n-2 generate
-		fas: full_adder port map(a(i), b(i), c(i), c(i+1),soma_all(i));
+		fas: full_adder port map(a(i), b(i), c(i), c(i+1),s(i));
 	end generate;
 	
-	estagio7: full_adder port map(a(n-1), b(n-1), c(n-1), soma_all(n),soma_all(n-1));
-	
-	s<=soma_all(n-1 downto 0);
+	estagio7: full_adder port map(a(n-1), b(n-1), c(n-1), s(n),s(n-1));
 	
 end funcionamento;
 

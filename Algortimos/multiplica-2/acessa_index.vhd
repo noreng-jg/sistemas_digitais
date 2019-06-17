@@ -33,6 +33,14 @@ component contador
 end component;
 
 
+component shiftr 
+	generic(n:integer:=4);
+	port(v_in: in std_logic_vector(N-1 downto 0);
+	q: out std_logic_vector(N-1 downto 0);
+	shr: in std_logic
+	);
+end component;
+
 component subtrator 
 	generic(n:integer:=4);
 	port(a:in std_logic_vector(N-1 downto 0);
@@ -63,7 +71,7 @@ begin
 	
 	sub: subtrator port map(another_signal, '0',"0001",syim);
 	inst: contador port map(start, clk, reset, another_signal, ouch);
-	comp: comp_ident port map(syim, "0011", igualou);
+	comp: comp_ident port map(syim, "0000", igualou);
 --	debugsinal<=syim;
 	
 end behaviour;

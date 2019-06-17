@@ -32,6 +32,13 @@ component contador
 	);
 end component;
 
+component shiftr 
+	generic(n:integer:=4);
+	port(v_in: in std_logic_vector(N-1 downto 0);
+	q: out std_logic_vector(N-1 downto 0);
+	shr: in std_logic
+	);
+end component;
 
 component subtrator 
 	generic(n:integer:=4);

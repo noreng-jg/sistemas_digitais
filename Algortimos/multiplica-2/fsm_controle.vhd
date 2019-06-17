@@ -40,7 +40,7 @@ begin
 					loadresp<='0';
 					shlen<='0';
 					pronto<='0';
-					reseta_contador<='0';
+					reseta_contador<='1';
 					resetacc<='0';
 					
 					if liga='1' then
@@ -53,7 +53,7 @@ begin
 					
 					loada<='1';
 					loadb<='1';
-					
+					reseta_contador<='0';
 					next_state<=s2;
 					
 				when s2=>
@@ -75,7 +75,7 @@ begin
 					
 				when s4=>
 					shlen<='1';
-					loadacc<='0';
+					loadacc<='1';
 					conta<='0';
 					
 					if igualou='1' then
@@ -90,7 +90,7 @@ begin
 					next_state<=s6;
 				
 				when s6 =>
-					reseta_contador<='1';
+					
 					pronto<='1';
 					loadresp<='0';
 					resetaacc<='1';
